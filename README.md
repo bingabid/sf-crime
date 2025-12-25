@@ -2,6 +2,22 @@
 
 This repo implements an end to end machine learning pipeline for the Kaggle San Francisco Crime Classification. The goal is to predict the crime category given spatiotemporal and contextual information from police reports.
 
+# Directory Structure
+
+```
+dataset
+     train.csv
+     test.csv
+checkpoints
+      mlp.pth
+      logistic_regression.pkl
+submissions
+     mlp_submission.csv
+     lightgbm_submission.csv
+     xgboost_submission.csv
+```
+
+
 # Feature Enigneering
 
 The preprocessing pipeline performs extensive feature engineering on raw tabular data. 
