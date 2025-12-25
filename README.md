@@ -20,4 +20,4 @@ Multiple models are trained and evaluated using a consistent train validation sp
 
 # Performance
 
-Model predictions are compared on validation performance and the best configurations are used to generate Kaggle submission files. The final solution achieves a multi class log loss of approximately 2.22804 and ranks within the top 100 on the public leaderboard.
+Model predictions are compared on validation performance and the best configurations are used to generate Kaggle submission files. The final solution achieves a multi class log loss of approximately 2.22804 and ranked 61st against public leaderboard.
