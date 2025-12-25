@@ -1,6 +1,6 @@
 # San Francisco Crime Classification (Kaggle)
 
-This repo implements an end to end machine learning pipeline for the Kaggle San Francisco Crime Classification. The goal is to predict the crime category given spatiotemporal and contextual information from police reports.
+This repository contains an end-to-end machine learning pipeline for predicting crime categories in San Francisco using structured, spatiotemporal, and textual data. The project demonstrates advanced feature engineering, model experimentation, and evaluation for tabular data.
 
 # Directory Structure
 
@@ -20,7 +20,28 @@ submissions
 
 # Feature Enigneering
 
-The preprocessing pipeline performs extensive feature engineering on raw tabular data. 
+The preprocessing pipeline performs extensive feature extraction and transformation to capture spatial, temporal, and textual patterns. Key steps include:
+
+## Spatial Features
+
+Latitude and longitude are processed to generate linear combinations (X+Y, X-Y) and radial distance (XY_rad). PCA is applied to capture principal geographic patterns. Gaussian Mixture clustering is used to create geo-clusters representing dense crime areas.
+
+##  Address Features
+
+Street addresses are parsed into STREET, BLOCK, and INTERSECTION types. Word2Vec embeddings are trained on addresses to capture semantic similarity and spatial relationships. A binary feature indicates intersections. Frequency encoding is applied to high-cardinality categorical features such as street names, address types, and districts.
+
+##  Temporal Features
+
+Date and time are parsed to generate hour, day, month, year, minute, and day-of-week features. Binary indicators are created for night and weekend occurrences.
+
+## Numeric Scaling
+
+All numeric features, including engineered spatial and temporal variables, are standardized using StandardScaler for improved model convergence.
+
+## Categorical Encoding
+
+Categorical features such as day-of-week, district, address type, and geo-cluster are label-encoded for model compatibility.
+
 * Temporal features are extracted from timestamps including hour day month year weekend indicators and night time flags.
 * Geospatial information from latitude and longitude is enriched using radial distance features principal component analysis and Gaussian Mixture based geo clustering to capture spatial crime patterns. 
 * Address text is modeled using Word2Vec embeddings trained on street level tokens to encode semantic structure in locations. 
