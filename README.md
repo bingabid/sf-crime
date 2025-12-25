@@ -17,42 +17,26 @@ submissions
      xgboost_submission.csv
 ```
 
-
 # Feature Enigneering
 
 The preprocessing pipeline performs extensive feature extraction and transformation to capture spatial, temporal, and textual patterns. Key steps include:
 
-* ```[Spatial Features]``` Latitude and longitude are processed to generate linear combinations (X+Y, X-Y) and radial distance (XY_rad). PCA is applied to capture principal geographic patterns. Gaussian Mixture clustering is used to create geo-clusters representing dense crime areas.
+* ```Spatial Features``` Latitude and longitude are processed to generate linear combinations (X+Y, X-Y) and radial distance (XY_rad). PCA is applied to capture principal geographic patterns. Gaussian Mixture clustering is used to create geo-clusters representing dense crime areas.
 
-##  Address Features
+* ```Address Features``` Street addresses are parsed into STREET, BLOCK, and INTERSECTION types. Word2Vec embeddings are trained on addresses to capture semantic similarity and spatial relationships. A binary feature indicates intersections. Frequency encoding is applied to high-cardinality categorical features such as street names, address types, and districts.
 
-Street addresses are parsed into STREET, BLOCK, and INTERSECTION types. Word2Vec embeddings are trained on addresses to capture semantic similarity and spatial relationships. A binary feature indicates intersections. Frequency encoding is applied to high-cardinality categorical features such as street names, address types, and districts.
+* ```Temporal Features``` Date and time are parsed to generate hour, day, month, year, minute, and day-of-week features. Binary indicators are created for night and weekend occurrences.
 
-##  Temporal Features
+* ```Numeric Scaling``` All numeric features, including engineered spatial and temporal variables, are standardized using StandardScaler for improved model convergence.
 
-Date and time are parsed to generate hour, day, month, year, minute, and day-of-week features. Binary indicators are created for night and weekend occurrences.
-
-## Numeric Scaling
-
-All numeric features, including engineered spatial and temporal variables, are standardized using StandardScaler for improved model convergence.
-
-## Categorical Encoding
-
-Categorical features such as day-of-week, district, address type, and geo-cluster are label-encoded for model compatibility.
-
-* Temporal features are extracted from timestamps including hour day month year weekend indicators and night time flags.
-* Geospatial information from latitude and longitude is enriched using radial distance features principal component analysis and Gaussian Mixture based geo clustering to capture spatial crime patterns. 
-* Address text is modeled using Word2Vec embeddings trained on street level tokens to encode semantic structure in locations. 
-* High cardinality categorical variables such as street name police district address type and day of week are encoded using frequency encoding and label encoding. 
-* All numerical features are standardized while binary indicators are kept unscaled.
+* ```Categorical Encoding``` Categorical features such as day-of-week, district, address type, and geo-cluster are label-encoded for model compatibility. High cardinality categorical variables such as street name police district address type and day of week are encoded using frequency encoding and label encoding. 
 
 # Models
-
 Multiple models are trained and evaluated using a consistent train validation split with multi class log loss as the primary metric. 
-* Baseline performance is established using multinomial logistic regression. 
-* Tree based models including XGBoost and LightGBM are trained with carefully tuned hyperparameters using Optuna. 
-* A custom PyTorch based multilayer perceptron is implemented for tabular data with a deep architecture of 2048 1024 and 512 hidden units with dropout regularization and trained using cross entropy loss.
+* ```Baselines Model```Baseline performance is established using multinomial logistic regression. 
+* ```Tree Models ``` These includes RandomForest, XGBoost and LightGBM are trained with carefully tuned hyperparameters using Optuna. 
+* ```MLP``` A custom PyTorch based multilayer perceptron is implemented for tabular data with a deep architecture of 2048 1024 and 512 hidden units with dropout regularization and trained using cross entropy loss.
 
-# Performance
+# Evaluation
 
 Model predictions are compared on validation performance and the best configurations are used to generate Kaggle submission files. The final solution achieves a multi class log loss of approximately 2.22804 and ranked 61st against public leaderboard.
