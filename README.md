@@ -13,10 +13,11 @@ The preprocessing pipeline performs extensive feature engineering on raw tabular
 
 # Models
 
-Multiple models are trained and evaluated using a consistent train validation split with multi class log loss as the primary metric. Baseline performance is established using multinomial logistic regression. Tree based models including XGBoost and LightGBM are trained with carefully tuned hyperparameters using Optuna. A custom PyTorch based multilayer perceptron is implemented for tabular data with a deep architecture of 2048 1024 and 512 hidden units with dropout regularization and trained using cross entropy loss.
+Multiple models are trained and evaluated using a consistent train validation split with multi class log loss as the primary metric. 
+* Baseline performance is established using multinomial logistic regression. 
+* Tree based models including XGBoost and LightGBM are trained with carefully tuned hyperparameters using Optuna. 
+* A custom PyTorch based multilayer perceptron is implemented for tabular data with a deep architecture of 2048 1024 and 512 hidden units with dropout regularization and trained using cross entropy loss.
 
 # Performance
 
-Model predictions are compared on validation performance and the best configurations are used to generate Kaggle submission files. The final solution achieves a multi class log loss of approximately 2.22 and ranks within the top 100 on the public leaderboard.
-
-This repository is organized into modular scripts for preprocessing baseline models hyperparameter tuning deep learning models model comparison and ensembling to ensure clarity reproducibility and extensibility.
+Model predictions are compared on validation performance and the best configurations are used to generate Kaggle submission files. The final solution achieves a multi class log loss of approximately 2.22804 and ranks within the top 100 on the public leaderboard.
