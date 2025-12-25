@@ -29,14 +29,16 @@ The preprocessing pipeline performs extensive feature extraction and transformat
 
 * ```Numeric Scaling``` All numeric features, including engineered spatial and temporal variables, are standardized using StandardScaler for improved model convergence.
 
-* ```Categorical Encoding``` Categorical features such as day-of-week, district, address type, and geo-cluster are label-encoded for model compatibility. High cardinality categorical variables such as street name police district address type and day of week are encoded using frequency encoding and label encoding. 
+* ```Categorical Encoding``` Categorical features such as day-of-week, district, address type, and geo-cluster are label-encoded for model compatibility. 
 
 # Models
 Multiple models are trained and evaluated using a consistent train validation split with multi class log loss as the primary metric. 
 * ```Baselines Model```Baseline performance is established using multinomial logistic regression. 
 * ```Tree Models ``` These includes RandomForest, XGBoost and LightGBM are trained with carefully tuned hyperparameters using Optuna. 
-* ```MLP``` A custom PyTorch based multilayer perceptron is implemented for tabular data with a deep architecture of 2048 1024 and 512 hidden units with dropout regularization and trained using cross entropy loss.
+* ```MLP``` A custom PyTorch based multilayer perceptron is implemented for tabular data with a deep architecture of 2048 1024 and 512 hidden units with dropout regularization and trained using cross entropy loss. The training and validation loss is as follows:
+![Training vs Validation Loss](images/mlp.png)
 
 # Evaluation
 
 Model predictions are compared on validation performance and the best configurations are used to generate Kaggle submission files. The final solution achieves a multi class log loss of approximately 2.22804 and ranked 61st against public leaderboard.
+![Submission](images/submissions.png)
