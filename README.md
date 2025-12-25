@@ -22,9 +22,7 @@ submissions
 
 The preprocessing pipeline performs extensive feature extraction and transformation to capture spatial, temporal, and textual patterns. Key steps include:
 
-## Spatial Features
-
-Latitude and longitude are processed to generate linear combinations (X+Y, X-Y) and radial distance (XY_rad). PCA is applied to capture principal geographic patterns. Gaussian Mixture clustering is used to create geo-clusters representing dense crime areas.
+* ```[Spatial Features]``` Latitude and longitude are processed to generate linear combinations (X+Y, X-Y) and radial distance (XY_rad). PCA is applied to capture principal geographic patterns. Gaussian Mixture clustering is used to create geo-clusters representing dense crime areas.
 
 ##  Address Features
 
